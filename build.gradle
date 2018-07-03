@@ -1,0 +1,45 @@
+plugins {
+    id 'java'
+    id 'application'
+    id 'com.github.johnrengelman.shadow' version '2.0.4'
+}
+
+group 'nl.gigafyde'
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+mainClassName = 'nl.gigafyde.apollo.Main'
+
+repositories {
+    jcenter()
+    maven { url 'https://jitpack.io' }
+}
+
+dependencies {
+    compile 'com.github.acoxgaming:JDACommando:1.2.0_18'
+    compile 'com.sedmelluq:lavaplayer:1.3.6'
+    compile 'com.sedmelluq:jda-nas:1.0.6'
+    compile 'com.github.MaikWezinkhof:ConfigurationBuilder:0.4'
+    compile 'ch.qos.logback:logback-classic:1.2.3'
+    compile 'org.codehaus.groovy:groovy-xml:2.4.13'
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '4.8.1'
+}
+
+build.dependsOn shadowJar
+
+artifacts {
+    archives shadowJar
+}
+
+jar {
+    classifier = "nodeps"
+}
+
+shadowJar {
+    classifier = ""
+}
+
+compileJava.options.encoding = 'UTF-8'
