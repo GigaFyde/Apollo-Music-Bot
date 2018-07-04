@@ -30,7 +30,7 @@ public class Skip extends BaseCommand {
             channel.sendMessage("**Nothing is playing!**").queue();
             return;
         }
-        if (scheduler.isEmpty() & event.getArgument().isEmpty()) {
+        if (scheduler.isAllEmpty() & event.getArgument().isEmpty()) {
             scheduler.getPlayer().destroy();
             channel.sendMessage("\u23ED **Skipped!**").queue();
             return;
