@@ -26,17 +26,19 @@ public class Skip extends BaseCommand {
             channel.sendMessage("**Not connected!**").queue();
             return;
         }
-        if (scheduler.isAllEmpty()) {
-            channel.sendMessage("**Manual queue is empty!**").queue();
+        if (scheduler.getPlayer().getPlayingTrack() == null) {
+            channel.sendMessage("**Nothing is playing!**").queue();
             return;
         }
-        if (scheduler.isEmpty()) {
-            channel.sendMessage("**Nothing is manually queued!**").queue();
+        if (scheduler.isEmpty() & event.getArgument().isEmpty()) {
+            scheduler.getPlayer().destroy();
+            channel.sendMessage("\u23ED **Skipped!**").queue();
             return;
         }
         if (event.getArgument().isEmpty()) {
             scheduler.skip();
             channel.sendMessage("\u23ED **Skipped!**").queue();
+            return;
         } else {
             int amountToSkip;
             try {
