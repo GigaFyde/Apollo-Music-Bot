@@ -37,6 +37,7 @@ public class Main {
                 .setAudioSendFactory(new NativeAudioSendFactory())
                 .addEventListener(client)
                 .buildBlocking();
+        LOGGER.info("Logged in as " + jda.getSelfUser().getName()+"#"+jda.getSelfUser().getDiscriminator());
         for(String id: Config.voice_channels.split(",")) {
             try {
                 VoiceChannel channel = jda.getVoiceChannelById(Long.parseLong(id));
